@@ -1,7 +1,7 @@
 # TODO
 
 - [ ] Expand the notes into something more detail that I can refer to
-- [ ] Put examples here by getting mermaid to work
+- [X] Put examples here by getting mermaid to work
 
 # Trees
 
@@ -23,7 +23,13 @@ The root node is labelled as x and the left node is 2x+1 and right node as 2x+2
 
 Usually the root node is labelled as 0
 
-**Make a diagram of the above concept**
+```mermaid
+graph TD
+a-->2x+1;
+a-->2x+2;
+```
+
+A complete binary tree is a tree where the nodes labels are continous
 
 A complete binary tree is a tree where the node labels forms a complete interval if there n then node labels must be 
 
@@ -49,3 +55,75 @@ BFS is used if the goal is to reach the end nodes
 
 DFS is used if you want to explore a branch as much as possible
 
+### Array Representation
+
+Visualzing trees as an array
+
+For skew binary trees it's not feasible 
+
+For Complete binary trees is a good option
+
+For Full binary trees also it's a good option
+
+### Linked List Representation
+
+#### T node
+```mermaid
+graph TD
+a-->b;
+a-->c;
+b-->d;
+b-->e;
+c-->f
+e-->g
+e-->h
+h-->i;
+```
+| Left Child | data | Right Child|
+| ------------- | ---- |  ---- |
+
+**Code example**
+
+```cpp
+struct tnode{
+    tnode<T> *lchild;
+    T data;
+    tnode<T> *rchild;
+}
+```
+
+Empty Tree return null
+
+Single Tree rt->lchild = null
+<br />
+rt->rchild = null
+
+rt here is the pointer of the tree in the linked list format
+
+### Traversals
+
+**Code for having different Traversals**
+
+```cpp
+template <class T>
+struct tnode{
+    tnode<T> *lchild;
+    T data;
+    tnode<T> *rchild;
+};
+class binTree{
+    private:
+        tnode<T> *rt;
+    public:
+        binTree();
+        void preorder();
+        void inorder();
+        void postorder();
+        void rinorder(tnode<T> *);
+        void rpreorder(tnode<T> *);
+        void rpostorder(tnode<T> *);
+        void create();
+        int nodecnt();
+        int leafcnt();
+        ~binTree();
+};
