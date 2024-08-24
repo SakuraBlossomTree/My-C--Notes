@@ -1,1 +1,3 @@
-# My-C++-Notes
+# My-CPP-Notes
+
+My CPP Notes
