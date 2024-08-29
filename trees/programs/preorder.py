@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -6,7 +8,7 @@ class Node:
 
 def preOrder(node):
 
-    nodes = []
+    nodes = deque()
     nodes.append(node)
 
     while len(nodes) > 0:
@@ -25,8 +27,10 @@ if __name__ == "__main__":
     root.left = Node(2)
     root.right = Node(3)
     root.left.left = Node(4)
-    root.left.right = Node(5)
+    root.right.left = Node(5)
     root.right.right = Node(6)
+    root.right.left.left = Node(7)
+    root.right.left.right = Node(8)  
 
     # Function call
     print("Preorder traversal of binary tree is:")

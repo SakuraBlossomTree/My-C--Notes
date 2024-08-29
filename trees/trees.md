@@ -127,3 +127,68 @@ class binTree{
         int leafcnt();
         ~binTree();
 };
+```
+# Post Order Traversal
+
+- Create a Stack of node pointers init it and push null into it
+
+- Consider root pointer P and init it to root
+
+- As long as there is left child for P, push P in stack and move P to its left child  
+
+- If there is unvisited right child for P push P in stack, move to it's right child and as long as there is left child for P push p to it's stack and move to p in it's child left child. If there is no unvisited for P process the node P and pop the address of the node P
+
+- Repeat the step 4 until the null is pop from the stack 
+
+```cpp
+void binTree<T>::postorder(){
+    stack<tnode T*> s;
+    s.push(NULL);
+    tnode<T> *p, *temp;
+    p=st; temp=NULL;
+
+    while(p->lchild!=NULL){
+        s.push(p);
+        p=p->lchild;
+    }
+    while(p!=NULL){
+        if(p->rchild!=NULL&&p->rchild!=temp){
+            s.push(p);
+            p=p->rchild;
+            while(p->lchild!=NULL){
+                s.push(p);
+                p=p->lchild;
+            }
+        }
+        else{
+           /*Code still left to write here*/ 
+        }
+    }
+}
+```
+
+Code to delete a Binary Tree
+```cpp
+binTree<T>::~binTree(){
+    stack<tnode T*> s;
+    s.push(NULL);
+
+    tnode<T> *p, *temp;
+    p=st;
+    while(p!=a){
+        if(p->rchild!=NULL){
+            s.push(p);
+        }
+        if(p->lchild!=NULL){
+            temp=p;
+            p=p->lchild;
+            delete temp;
+        }
+        else{
+            p=s.pop()
+        }
+    }
+}
+```
+
+# LL Rotation
