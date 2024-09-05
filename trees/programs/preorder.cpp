@@ -1,62 +1,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
+struct Node{
+    
     int data;
     Node *left, *right;
 
     Node(int data){
         this->data = data;
         this->left = this->right = nullptr;
-    }
+    };
+
 };
 
-void postorder(Node* root){
+void preorder(Node* root){
 
     if (root == nullptr){
         return;
-    };
-
-    stack<Node*> s;
-    s.push(root);
-
-    stack<int> out;
-
-    while(!s.empty()){
-       
-        Node* curr = s.top();
-        s.pop();
-
-        out.push(curr->data);
-
-        if(curr->left != nullptr){
-            s.push(curr->left);
-        };
-        if(curr->right != nullptr){
-            s.push(curr->right);
-        };
-
-    };
-
-    while(!out.empty()){
-        cout<<out.top()<<" ";
-        out.pop();
     }
 
-};
+    stack<Node*> s; // s is a stack which has Node datatype
+    s.push(root);
+
+    while(!s.empty()){
+
+        Node* curr = s.top();
+        s.pop();
+        cout<<curr->data<<" ";
+
+        if(curr->right != nullptr){
+            s.push(curr->right);
+        }
+        if(curr->left != nullptr){
+            s.push(curr->left);
+        }
+
+    };
+
+}
 
 int main(){
 
+    /*
+        
+        
+       1
+
+     2  3
+
+   4  5   6
+
+
+    */
+    
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
     root->left->left = new Node(4);
-    root->right->left = new Node(5);
+    root->left->right = new Node(5);
     root->right->right = new Node(6);
-    root->right->left->left = new Node(7);
-    root->right->left->right = new Node(8);
 
-    postorder(root);
+    preorder(root);
 
     return 0;
 }
